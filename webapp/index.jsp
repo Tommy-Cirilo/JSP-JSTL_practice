@@ -10,3 +10,6 @@
 
 
 
+<%-- lets increment page counter --%>
+<% counter += 1; %>
+
