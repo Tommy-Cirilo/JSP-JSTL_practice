@@ -18,9 +18,9 @@ public class IndexServlet extends HttpServlet {
         //This is where we want to tell the tomcat server to display the webapp/index.jsp
 
         //The Boring way
-        resp.setContentType("text/html");
-        PrintWriter out = resp.getWriter();
-        out.println("Welcome to Burger Galore");
+//        resp.setContentType("text/html");
+//        PrintWriter out = resp.getWriter();
+        resp.getWriter().println("Welcome to Burger Galore");
         //end boring way
 
     }
