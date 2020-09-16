@@ -1,64 +1,55 @@
-<%--
-
---%>
-
-<%--This is a page directive, that will apply to the entire page--%>
+<%-- This is a page directive, that will apply to the entire page --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-"
 
-<%--Lets take a look at an instance variable, and like servlet vars, this will continue between page loads--%>
+<%-- Let's take a look at an instance variable, and like servlet variables, this will persist between page loads --%>
 <%! int counter = 0; %>
 
-
-<%-- lets increment page counter --%>
-<% counter += 1; %>
 
 <html>
 <head>
     <jsp:include page="partials/head.jsp">
-        <jsp:param name="title" value="BurgerVille"/>
+        <jsp:param name="title" value="Burgers 'R Us" />
     </jsp:include>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>BurgerVille</title>
 </head>
 <body>
 <div class="container">
-    <h1>Welcome to BurgerVille</h1>
+    <h1>Welcome to Burgers 'r Us!</h1>
     <p>Currently <%= counter %> million burgers sold</p>
-    <p>Path: <%= request.getRequestURL() %>
-    </p>
-    <p>Query String: <%= request.getQueryString() %>
-    </p>
-    <p>"Burgers" parameter:  <%= request.getParameter("burgers") %>
-    </p>
-    <p>User-Agent header:  <%= request.getHeader("user-agent") %>
-    </p>
-    <p>Resonse Status:  <%= response.getStatus() %>
-    </p>
-    <p>All the param values: ${paramValues}</p>
-    <p>Size of Session Scope: ${sessionScope.size()}</p>
 
+    <%-- Let's take a look at some implicit objects, available to us with JSP --%>
+    <p><strong>Path:</strong> <%= request.getRequestURL() %></p>
+    <p><strong>Query String:</strong> <%= request.getQueryString() %></p>
+    <p><strong>"burgers" parameter:</strong> <%= request.getParameter("burgers") %></p>
+    <p><strong>User-Agent header:</strong> <%= request.getHeader("user-agent") %></p>
+    <p><strong>Response Status:</strong> <%= response.getStatus() %></p>
+    <p><strong>All the param values:</strong> ${paramValues}</p>
+    <p><strong>Size of Session Scope:</strong> ${sessionScope.size()}</p>
 
+    <%-- Use JSTL to iterate through our list of burgers --%>
     <h2>Here is our menu!</h2>
-<%--    User JSTL to iterate through our list of burgers--%>
+
+    <%-- Only display the burger menu if `truthiness` is true--%>
+    <c:choose>
+        <c:when test="${truthiness}">
+            <c:forEach items="${completeBurgerList}" var="burger">
+                <li><strong>${burger.burgerName}</strong></li>
+            </c:forEach>
+        </c:when>
+        <c:otherwise>
+            <p>We currently don't have any food.</p>
+        </c:otherwise>
+    </c:choose>
     <ul>
-    <c:forEach items="${allBurgers}" var="burger">
-        <li>Burger: ${burger.burgerName}</li>
-    </c:forEach>
     </ul>
+
+
 </div>
 
-<jsp:include page="partials/scripts.jsp"/>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
+
+
+<%-- Now let's run some arbitrary Java code, to increment the counter by 1 every time we reload this page --%>
+<% counter += 1; %>
+<jsp:include page="partials/scripts.jsp" />
 </body>
 </html>
