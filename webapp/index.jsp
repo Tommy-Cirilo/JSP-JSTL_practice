@@ -4,6 +4,7 @@
 
 <%--This is a page directive, that will apply to the entire page--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 "
 
 <%--Lets take a look at an instance variable, and like servlet vars, this will continue between page loads--%>
@@ -16,7 +17,7 @@
 <html>
 <head>
     <jsp:include page="partials/head.jsp">
-        <jsp:param name="title" value="BurgerVille" />
+        <jsp:param name="title" value="BurgerVille"/>
     </jsp:include>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -26,6 +27,27 @@
 <div class="container">
     <h1>Welcome to BurgerVille</h1>
     <p>Currently <%= counter %> million burgers sold</p>
+    <p>Path: <%= request.getRequestURL() %>
+    </p>
+    <p>Query String: <%= request.getQueryString() %>
+    </p>
+    <p>"Burgers" parameter:  <%= request.getParameter("burgers") %>
+    </p>
+    <p>User-Agent header:  <%= request.getHeader("user-agent") %>
+    </p>
+    <p>Resonse Status:  <%= response.getStatus() %>
+    </p>
+    <p>All the param values: ${paramValues}</p>
+    <p>Size of Session Scope: ${sessionScope.size()}</p>
+
+
+    <h2>Here is our menu!</h2>
+<%--    User JSTL to iterate through our list of burgers--%>
+    <ul>
+    <c:forEach items="${allBurgers}" var="burger">
+        <li>Burger: ${burger.burgerName}</li>
+    </c:forEach>
+    </ul>
 </div>
 
 <jsp:include page="partials/scripts.jsp"/>
