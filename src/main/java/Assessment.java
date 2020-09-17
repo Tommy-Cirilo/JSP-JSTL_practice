@@ -1,18 +1,25 @@
 import java.util.HashMap;
 import model.Burger;
+import model.DaoFactory;
 
 public class Assessment {
     // Have a Burger Class - properties of condiments - print out a statement about deliciousness factor
 
     public static void main(String[] args) {
+        //Show connection of the Dao Factory to all of our other model stuff
+        //To find the burger of ID 5
+        Burger burgerFive = DaoFactory.getBurgersDao().findById(5L);
+
+
         // test making a burger
         Burger bigMac = new Burger("Big Mac", 3, 7, 2, true);
 
-        System.out.println(bigMac.getNumPickles());
-        System.out.println(bigMac.burgerHasCheese());
+        long resultId = DaoFactory.getBurgersDao().createBurger(bigMac);
+//        System.out.println(bigMac.getNumPickles());
+//        System.out.println(bigMac.burgerHasCheese());
 
         Burger homestyle = new Burger("Homestyle", 2, 3, 1, false);
-        System.out.println(homestyle.burgerHasCheese());
+//        System.out.println(homestyle.burgerHasCheese());
 
         System.out.println("The area of a rectangle with side 1: 5, and side 2: 7 is equal to: " + getArea(5, 7));
 
