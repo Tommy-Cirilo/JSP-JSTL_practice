@@ -1,21 +1,22 @@
 package model;
 
-public class Burger implements BurgerSale {
+import java.io.Serializable;
+
+//must implement Serializable for bean when using mvc
+public class Burger implements Serializable {
     // properties for bun, pickles, numPatties, Cheese
+    //must be able to differentiate each burger from the rest, so a uniqe id is required
+    private long id;
     private String burgerName;
-
-    public String getBurgerName() {
-        return burgerName;
-    }
-
-    public void setBurgerName(String burgerName) {
-        this.burgerName = burgerName;
-    }
-
     private int numBuns; // 3 for big mac, etc
     private int numPickles;
     private int numPatties;
     private boolean cheese; // true or false
+
+    //TODO: Segment the condiments out into their own bean (i.e public class ingredient)
+    //private List<Ingredient> ingredients;
+    //we have to craete a zero-argument constructor so java can reserve space and memory for this object
+    public Burger(){}
 
     // constructor
     public Burger(String burgerName, int numberBuns, int numberPickles, int numberPatties, boolean hasCheese) {
@@ -27,13 +28,14 @@ public class Burger implements BurgerSale {
         cheese = hasCheese;
     }
 
-    @Override
-    public String burgerHasCheese() {
-        if (this.cheese) {
-            return "This " + this.burgerName + " has cheese.";
-        } else {
-            return "This " + this.burgerName + " sadly has no cheese.";
-        }
+//    Getters and Setters
+
+    public String getBurgerName() {
+        return burgerName;
+    }
+
+    public void setBurgerName(String burgerName) {
+        this.burgerName = burgerName;
     }
 
     // public Burger(int numBuns, int numPickles, int numPatties, boolean cheese) {
