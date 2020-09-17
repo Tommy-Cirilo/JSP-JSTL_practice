@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 //must implement Serializable for bean when using mvc
 public class Burger implements Serializable {
+
+
     // properties for bun, pickles, numPatties, Cheese
     //must be able to differentiate each burger from the rest, so a uniqe id is required
     private long id;
@@ -77,5 +79,13 @@ public class Burger implements Serializable {
 
     public void setCheese(boolean cheese) {
         this.cheese = cheese;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

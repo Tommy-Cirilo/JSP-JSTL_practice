@@ -17,4 +17,11 @@ public class DaoFactory {
         }
         return burgersDao;
     }
+
+    public static Ingredients getIngredientsDao() {
+        if (ingredientsDao == null){
+            ingredientsDao = new IngredientsDAO();
+        }
+        return ingredientsDao;
+    }
 }
