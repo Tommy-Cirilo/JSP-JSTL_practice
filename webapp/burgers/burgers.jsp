@@ -15,7 +15,7 @@
     <title>Burgers 'R Us</title>
 </head>
 <body>
-<%@ include file="partials/navbar.jsp" %>
+<%@ include file="../partials/navbar.jsp" %>
 <h1>Currently, <%= counter %> burgers served!</h1>
 
 View the page source!
@@ -25,6 +25,6 @@ View the page source!
 <!-- this is an HTML comment, you *will* see this in the html -->
 
 <!-- This will include all our BS JS code just before the closing body tag
-<jsp:include page="partials/scripts.jsp"></jsp:include>
+<jsp:include page="../partials/scripts.jsp"></jsp:include>
 </body>
 </html>
