@@ -8,6 +8,7 @@ public class DaoFactory {
     //we will reference its interface
 
     private static Burgers burgersDao;
+    private static Ingredients ingredientsDao;
 
     //any bean type we have will get a method called get[Bean]Dao()
 
