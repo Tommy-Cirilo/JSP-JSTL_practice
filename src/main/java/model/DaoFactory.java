@@ -9,20 +9,28 @@ public class DaoFactory {
 
     private static Burgers burgersDao;
     private static Ingredients ingredientsDao;
+    private static Sodas sodasDao;
 
     //any bean type we have will get a method called get[Bean]Dao()
 
     public static Burgers getBurgersDao() {
-        if (burgersDao == null){
+        if (burgersDao == null) {
             burgersDao = new BurgersDAO();
         }
         return burgersDao;
     }
 
     public static Ingredients getIngredientsDao() {
-        if (ingredientsDao == null){
+        if (ingredientsDao == null) {
             ingredientsDao = new IngredientsDAO();
         }
         return ingredientsDao;
+    }
+
+    public static Sodas getSodasDao() {
+        if (sodasDao == null) {
+            sodasDao = new SodasDao();
+        }
+        return sodasDao;
     }
 }

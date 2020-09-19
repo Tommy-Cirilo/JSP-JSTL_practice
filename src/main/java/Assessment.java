@@ -1,4 +1,5 @@
 import java.util.HashMap;
+
 import model.Burger;
 import model.DaoFactory;
 import model.Ingredient;
@@ -10,13 +11,12 @@ public class Assessment {
     public static void main(String[] args) {
         //Show connection of the Dao Factory to all of our other model stuff
         //To find the burger of ID 5
-        Burger burgerFive = DaoFactory.getBurgersDao().findById(5L);
+//        Burger burgerFive = DaoFactory.getBurgersDao().findById(5L);
 
-         Ingredient tomatoes = DaoFactory.getIngredientsDao().findById(5L);
+//         Ingredient tomatoes = DaoFactory.getIngredientsDao().findById(5L);
 
-         Ingredient qpPickles = new Ingredient("Quarter Pounder Pickles", 3);
-         long resultIngredientID = DaoFactory.getIngredientsDao().createIngredient(qpPickles);
-
+//         Ingredient qpPickles = new Ingredient("Quarter Pounder Pickles", 3);
+//         long resultIngredientID = DaoFactory.getIngredientsDao().createIngredient(qpPickles);
 
 
         // test Soda functionality
@@ -28,7 +28,6 @@ public class Assessment {
 
         String cokeName = cocaCola.getName();
         int cokeSize = cocaCola.getQuantity();
-
 
 
         String cokeSizeString;
@@ -50,7 +49,6 @@ public class Assessment {
         System.out.println(cokeSizeString);
 
 
-
         // test making a burger
 //        Burger bigMac = new Burger("Big Mac", 3, 7, 2, true);
 //
@@ -60,10 +58,6 @@ public class Assessment {
 
 //        Burger homestyle = new Burger("Homestyle", 2, 3, 1, false);
 //        System.out.println(homestyle.burgerHasCheese());
-
-
-
-
 
 
 //        System.out.println("The area of a rectangle with side 1: 5, and side 2: 7 is equal to: " + getArea(5, 7));

@@ -2,6 +2,7 @@ package controller;
 
 import model.Burger;
 import model.DaoFactory;
+import model.Soda;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "IndexServlet", urlPatterns = "/")
+@WebServlet(name = "IndexServlet", urlPatterns = "")
 public class IndexServlet extends HttpServlet {
     // we want to display our 'home page' using this servlet, when someone loads
     //  'http://localhost:8080/'
@@ -21,17 +22,6 @@ public class IndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         // this is where we want to tell the Tomcat server to display the webapp/index.jsp template file (as a webpage)
-
-        // The BORING way
-        // resp.setContentType("text/html");
-
-        // resp.getWriter().println("<h1>Welcome to Burgers 'R Us!</h1>");
-        // END: The BORING way
-
-        // Let's make some burgers, add them all to a list, and send them to index.jsp for looping through
-        /*Burger bigMac = new Burger("Big Mac", 3, 7, 2, true);
-        Burger homestyle = new Burger("Homestyle", 2, 3, 1, false);
-        Burger quarterPounder = new Burger("Quarter Pounder", 2, 3, 1, true);*/
 
         // Get all the burgers to a list with links to their individual profile
         List<Burger> allBurgers = new ArrayList<>();
@@ -41,15 +31,45 @@ public class IndexServlet extends HttpServlet {
         // Send that list to our JSP page, as a parameter
         // Name in "quotes" is the variable name we'll use in our JSP,
         // and the second argument is the actual value we are sending to JSP
+
+        //sends the list of Burger to the attribute 'allburgers'
         req.setAttribute("allBurgers", allBurgers);
 
 
+        // create a list of all our existing sodas
+        List<Soda> allSodas = new ArrayList<>();
+        allSodas.add(DaoFactory.getSodasDao().findById(1L)); // coke
+        allSodas.add(DaoFactory.getSodasDao().findById(2L)); // drpepper
+        allSodas.add(DaoFactory.getSodasDao().findById(3L)); // sprite
+
+        // add a new attribute called "allSodas" or something similar
+        req.setAttribute("allSodas", allSodas);
 
 
+        List<String> cokeSize = new ArrayList<>();
+        for ( Soda soda : allSodas ) {
 
-//        allBurgers.add(bigMac);
-//        allBurgers.add(homestyle);
-//        allBurgers.add(quarterPounder);
+            switch (soda.getQuantity()) {
+                case 1:
+                    cokeSize.add("Small");
+                    break;
+                case 2:
+                    cokeSize.add("Medium");
+                    break;
+                case 3:
+                    cokeSize.add("SuperSize");
+                    break;
+                default:
+                    cokeSize.add("Huh?");
+                    break;
+            }
+
+        }
+
+        //  [ "medium", "medium", "Super-Size" ]
+        req.setAttribute("cokeSizes", cokeSize);
+
+
 
         // Send that list to our JSP page, as a parameter
         // Name in "quotes" is the variable name we'll use in our JSP,

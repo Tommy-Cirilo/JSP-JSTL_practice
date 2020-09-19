@@ -44,7 +44,7 @@ public class IngredientsDAO implements Ingredients {
 
 
 
-
+    //method creates an ingredient and return its newly created ID
     @Override
     public long createIngredient(Ingredient ingredient) {
         ingredient.setId(ingredients.size() + 1);
@@ -54,10 +54,9 @@ public class IngredientsDAO implements Ingredients {
         return ingredient.getId();
     }
 
-    //this method will search for a burger by its id
-    //and return the full burger object
+    //this method will find an ingredient by its ID
     @Override
     public Ingredient findById(long id) {
-        return ingredients.get((int) id + 1);
+        return ingredients.get((int) id - 1);
     }
 }

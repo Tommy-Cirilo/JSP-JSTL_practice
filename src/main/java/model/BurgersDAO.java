@@ -10,6 +10,15 @@ public class BurgersDAO implements Burgers{
     //create a temporary list, to hold the burgers as they are created
     private List<Burger> burgers = new ArrayList<>();
 
+    //create some burgers that contain those ingredients
+
+    //BigMac = patty x 2, buns x 3, cheese x1, pickles x3
+
+    //homestyle = patty x 1, buns x 2, pickles x 3, tomatoes x 2
+
+    //quarter pounder = patty x2, buns x2, pickles x3, tomatoes x2
+
+
     public BurgersDAO() {
 
         //BigMac
@@ -50,13 +59,7 @@ public class BurgersDAO implements Burgers{
     }
 
 
-    //create some burgers that contain those ingredients
 
-    //BigMac = patty x 2, buns x 3, cheese x1, pickles x3
-
-    //homestyle = patty x 1, buns x 2, pickles x 3, tomatoes x 2
-
-    //quarter pounder = patty x2, buns x2, pickles x3, tomatoes x2
 
 
 
@@ -66,7 +69,7 @@ public class BurgersDAO implements Burgers{
     //and return the full burger object
     @Override
     public Burger findById(long id) {
-        return burgers.get((int)id +1);
+        return burgers.get((int)id - 1);
     }
 
     //this method will create a burger object in our local repo
@@ -75,6 +78,6 @@ public class BurgersDAO implements Burgers{
     public long createBurger(Burger burger) {
         burger.setId(burgers.size() + 1);
         burgers.add(burger);
-        return 0;
+        return burger.getId();
     }
 }
