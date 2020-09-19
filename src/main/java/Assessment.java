@@ -2,6 +2,7 @@ import java.util.HashMap;
 import model.Burger;
 import model.DaoFactory;
 import model.Ingredient;
+import model.Soda;
 
 public class Assessment {
     // Have a Burger Class - properties of condiments - print out a statement about deliciousness factor
