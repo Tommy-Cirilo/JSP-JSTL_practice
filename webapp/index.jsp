@@ -30,20 +30,18 @@
     <h2>Here is our menu!</h2>
 
     <%-- Only display the burger menu if `truthiness` is true--%>
-    <c:choose>
-        <c:when test="${truthiness}">
+<%--    <c:choose>--%>
+<%--        <c:when test="${truthiness}">--%>
             <c:forEach items="${completeBurgerList}" var="burger">
                 <li><strong>${burger.burgerName}</strong></li>
             </c:forEach>
-        </c:when>
-        <c:otherwise>
-            <p>We currently don't have any food.</p>
-        </c:otherwise>
-    </c:choose>
+<%--        </c:when>--%>
+<%--        <c:otherwise>--%>
+<%--            <p>We currently don't have any food.</p>--%>
+<%--        </c:otherwise>--%>
+<%--    </c:choose>--%>
     <ul>
     </ul>
-
-
 </div>
 
 

@@ -1,6 +1,7 @@
 package model;
 
 import java.io.Serializable;
+import java.util.List;
 
 //must implement Serializable for bean when using mvc
 public class Burger implements Serializable {
@@ -10,10 +11,12 @@ public class Burger implements Serializable {
     //must be able to differentiate each burger from the rest, so a uniqe id is required
     private long id;
     private String burgerName;
-    private int numBuns; // 3 for big mac, etc
+    private List<Ingredient> ingredients;
+   /* private int numBuns; // 3 for big mac, etc
     private int numPickles;
     private int numPatties;
-    private boolean cheese; // true or false
+    private boolean cheese; // true or false*/
+
 
     //TODO: Segment the condiments out into their own bean (i.e public class ingredient)
     //private List<Ingredient> ingredients;
@@ -21,13 +24,15 @@ public class Burger implements Serializable {
     public Burger(){}
 
     // constructor
-    public Burger(String burgerName, int numberBuns, int numberPickles, int numberPatties, boolean hasCheese) {
+    public Burger(String burgerName, List<Ingredient> ingredientList) {
         // set each of the local class properties, to the arguments passed into this constructor
         this.burgerName = burgerName;
-        this.numBuns = numberBuns;
+        this.ingredients = ingredientList;
+
+        /*this.numBuns = numberBuns;
         this.numPickles = numberPickles;
         numPatties = numberPatties;
-        cheese = hasCheese;
+        cheese = hasCheese;*/
     }
 
 //    Getters and Setters
@@ -49,7 +54,7 @@ public class Burger implements Serializable {
 
     // ctrl - enter (to get the menu where you can create getters/setters)
 
-    public int getNumBuns() {
+    /*public int getNumBuns() {
         return numBuns;
     }
 
@@ -79,7 +84,7 @@ public class Burger implements Serializable {
 
     public void setCheese(boolean cheese) {
         this.cheese = cheese;
-    }
+    }*/
 
     public long getId() {
         return id;
@@ -88,4 +93,13 @@ public class Burger implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
+    public List<Ingredient> getIngredients(){
+        return ingredients;
+    }
+
+    public void setIngredients(List<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
 }

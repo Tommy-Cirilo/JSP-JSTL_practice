@@ -1,6 +1,7 @@
 package controller;
 
 import model.Burger;
+import model.DaoFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,7 +13,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet(name = "IndexServlet", urlPatterns = "/home")
+@WebServlet(name = "IndexServlet", urlPatterns = "/")
 public class IndexServlet extends HttpServlet {
     // we want to display our 'home page' using this servlet, when someone loads
     //  'http://localhost:8080/'
@@ -28,21 +29,35 @@ public class IndexServlet extends HttpServlet {
         // END: The BORING way
 
         // Let's make some burgers, add them all to a list, and send them to index.jsp for looping through
-        Burger bigMac = new Burger("Big Mac", 3, 7, 2, true);
+        /*Burger bigMac = new Burger("Big Mac", 3, 7, 2, true);
         Burger homestyle = new Burger("Homestyle", 2, 3, 1, false);
-        Burger quarterPounder = new Burger("Quarter Pounder", 2, 3, 1, true);
+        Burger quarterPounder = new Burger("Quarter Pounder", 2, 3, 1, true);*/
 
-        // Add all the burgers to a list
+        // Get all the burgers to a list with links to their individual profile
         List<Burger> allBurgers = new ArrayList<>();
-        allBurgers.add(bigMac);
-        allBurgers.add(homestyle);
-        allBurgers.add(quarterPounder);
+        allBurgers.add(DaoFactory.getBurgersDao().findById(1L)); //bigMac
+        allBurgers.add(DaoFactory.getBurgersDao().findById(2L)); //homestyle
+        allBurgers.add(DaoFactory.getBurgersDao().findById(3L)); //quarter pounder
+        // Send that list to our JSP page, as a parameter
+        // Name in "quotes" is the variable name we'll use in our JSP,
+        // and the second argument is the actual value we are sending to JSP
+        req.setAttribute("allBurgers", allBurgers);
+
+
+
+
+
+//        allBurgers.add(bigMac);
+//        allBurgers.add(homestyle);
+//        allBurgers.add(quarterPounder);
 
         // Send that list to our JSP page, as a parameter
         // Name in "quotes" is the variable name we'll use in our JSP,
         // and the second argument is the actual value we are sending to JSP
-        req.setAttribute("completeBurgerList", allBurgers);
-        req.setAttribute("truthiness", false);
+       /* req.setAttribute("completeBurgerList", allBurgers);
+        req.setAttribute("truthiness", false);*/
+
+
 
         // The FUN way!!
         req.getRequestDispatcher("/index.jsp").forward(req, resp);
